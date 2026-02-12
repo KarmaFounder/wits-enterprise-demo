@@ -1,16 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Droplets, Phone, Mail, MapPin, ChevronDown, Send, Shield, Leaf, Wrench, Waves, Menu, X, ArrowRight, CheckCircle2, Pipette, CloudRain, Filter, Zap, Search } from 'lucide-react'
 import { saveLead } from '../store/leads'
 
 const services = [
-  { title: 'Irrigation Installation & Maintenance', icon: Droplets, desc: 'Complete irrigation systems designed for farms, gardens, and commercial properties. Drip, sprinkler, and centre-pivot solutions with ongoing maintenance.' },
-  { title: 'Borehole & Booster Pumps', icon: Pipette, desc: 'Professional borehole pump installation and booster pump systems to ensure consistent water pressure for residential and commercial applications.' },
-  { title: 'Rainwater Harvesting', icon: CloudRain, desc: 'Capture and store rainwater with our tank systems, guttering, and first-flush diverters. Reduce municipal dependence and your water bill.' },
-  { title: 'Filtration Systems', icon: Filter, desc: 'Multi-stage water filtration for homes and industry. Remove iron, sediment, bacteria, and chemicals for clean, safe drinking water.' },
-  { title: 'Dual Powered Borehole Pumps', icon: Zap, desc: 'Solar and electric hybrid pump systems that keep water flowing during load shedding. Energy-efficient and reliable.' },
-  { title: 'Drainage Pumps', icon: Waves, desc: 'Submersible and surface drainage pumps for basements, construction sites, and flood-prone areas. Emergency installations available.' },
-  { title: 'Borehole Survey & Drilling', icon: Search, desc: 'Geophysical surveys to locate optimal drilling points, followed by professional drilling services. Full permits and compliance handled.' },
+  { title: 'Irrigation Installation & Maintenance', icon: Droplets, img: '/images/irrigation.jpg', desc: 'Complete irrigation systems designed for farms, gardens, and commercial properties. Drip, sprinkler, and centre-pivot solutions with ongoing maintenance.' },
+  { title: 'Borehole & Booster Pumps', icon: Pipette, img: '/images/borehole.jpg', desc: 'Professional borehole pump installation and booster pump systems to ensure consistent water pressure for residential and commercial applications.' },
+  { title: 'Rainwater Harvesting', icon: CloudRain, img: '/images/rainwater.jpg', desc: 'Capture and store rainwater with our tank systems, guttering, and first-flush diverters. Reduce municipal dependence and your water bill.' },
+  { title: 'Filtration Systems', icon: Filter, img: '/images/filtration.jpg', desc: 'Multi-stage water filtration for homes and industry. Remove iron, sediment, bacteria, and chemicals for clean, safe drinking water.' },
+  { title: 'Dual Powered Borehole Pumps', icon: Zap, img: '/images/solar-pump.jpg', desc: 'Solar and electric hybrid pump systems that keep water flowing during load shedding. Energy-efficient and reliable.' },
+  { title: 'Drainage Pumps', icon: Waves, img: '/images/drainage.jpg', desc: 'Submersible and surface drainage pumps for basements, construction sites, and flood-prone areas. Emergency installations available.' },
+  { title: 'Borehole Survey & Drilling', icon: Search, img: '/images/drilling.jpg', desc: 'Geophysical surveys to locate optimal drilling points, followed by professional drilling services. Full permits and compliance handled.' },
+]
+
+const heroSlides = [
+  { img: '/images/hero-1.jpg', alt: 'Water systems' },
+  { img: '/images/hero-2.jpg', alt: 'Agricultural irrigation' },
+  { img: '/images/hero-3.jpg', alt: 'Clean water' },
+  { img: '/images/hero-4.jpg', alt: 'Water infrastructure' },
 ]
 
 const reasons = [
@@ -42,24 +49,25 @@ function ServiceCard({ service }) {
     <div style={{ background: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)', border: '1px solid #e8f0fe', transition: 'box-shadow 0.3s, transform 0.3s' }}
       onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
       onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; e.currentTarget.style.transform = 'translateY(0)' }}>
-      <div style={{ height: '4px', background: 'linear-gradient(90deg, #2474ea, #3a92f5, #46c08c)' }} />
-      <div style={{ padding: '28px' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', marginBottom: '16px' }}>
-          <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'linear-gradient(135deg, #eff8ff, #dbeefe)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Icon style={{ width: '24px', height: '24px', color: '#2474ea' }} />
-          </div>
-          <div>
-            <h3 className="font-display" style={{ fontWeight: 700, fontSize: '17px', color: '#172a53', lineHeight: 1.3 }}>{service.title}</h3>
-            <p style={{ fontSize: '13.5px', color: '#64748b', marginTop: '6px', lineHeight: 1.6 }}>{service.desc}</p>
-          </div>
-        </div>
 
-        <button onClick={() => setOpen(!open)} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: 600, color: '#2474ea', background: 'none', border: 'none', cursor: 'pointer', marginTop: '8px', padding: 0 }}>
+      {/* Card image */}
+      <div style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
+        <img src={service.img} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        <div style={{ position: 'absolute', bottom: '12px', left: '12px', width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Icon style={{ width: '20px', height: '20px', color: '#2474ea' }} />
+        </div>
+      </div>
+
+      <div style={{ padding: '24px' }}>
+        <h3 className="font-display" style={{ fontWeight: 700, fontSize: '17px', color: '#172a53', lineHeight: 1.3 }}>{service.title}</h3>
+        <p style={{ fontSize: '13.5px', color: '#64748b', marginTop: '8px', lineHeight: 1.6 }}>{service.desc}</p>
+
+        <button onClick={() => setOpen(!open)} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: 600, color: '#2474ea', background: 'none', border: 'none', cursor: 'pointer', marginTop: '14px', padding: 0 }}>
           Get a Quote
           <ChevronDown style={{ width: '16px', height: '16px', transition: 'transform 0.3s', transform: open ? 'rotate(180deg)' : 'rotate(0)' }} />
         </button>
 
-        <div style={{ overflow: 'hidden', maxHeight: open ? '500px' : '0', opacity: open ? 1 : 0, transition: 'max-height 0.5s, opacity 0.3s', marginTop: open ? '20px' : '0' }}>
+        <div style={{ overflow: 'hidden', maxHeight: open ? '500px' : '0', opacity: open ? 1 : 0, transition: 'max-height 0.5s, opacity 0.3s', marginTop: open ? '16px' : '0' }}>
           {submitted ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', background: '#eefbf4', borderRadius: '12px', color: '#126b4b', fontWeight: 500, fontSize: '14px' }}>
               <CheckCircle2 style={{ width: '20px', height: '20px' }} />
@@ -84,6 +92,43 @@ function ServiceCard({ service }) {
   )
 }
 
+function HeroSlideshow() {
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrent(c => (c + 1) % heroSlides.length), 5000)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <>
+      {heroSlides.map((slide, i) => (
+        <img
+          key={i}
+          src={slide.img}
+          alt={slide.alt}
+          style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
+            opacity: current === i ? 1 : 0,
+            transition: 'opacity 1.2s ease-in-out',
+            transform: current === i ? 'scale(1.05)' : 'scale(1)',
+          }}
+        />
+      ))}
+      {/* Slide indicators */}
+      <div style={{ position: 'absolute', bottom: '100px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10 }}>
+        {heroSlides.map((_, i) => (
+          <button key={i} onClick={() => setCurrent(i)} style={{
+            width: current === i ? '32px' : '8px', height: '8px', borderRadius: '4px',
+            background: current === i ? 'white' : 'rgba(255,255,255,0.4)',
+            border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0,
+          }} />
+        ))}
+      </div>
+    </>
+  )
+}
+
 export default function PublicSite() {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [contactForm, setContactForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
@@ -99,9 +144,9 @@ export default function PublicSite() {
   return (
     <div style={{ minHeight: '100vh', background: 'white', fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
 
-      {/* Floating Pill Nav */}
+      {/* Floating Rounded-Rectangle Nav */}
       <nav style={{ position: 'fixed', top: '16px', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '92%', maxWidth: '900px' }}>
-        <div style={{ background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderRadius: '9999px', padding: '10px 12px 10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 30px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.05)', border: '1px solid rgba(219,238,254,0.5)' }}>
+        <div style={{ background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderRadius: '16px', padding: '10px 12px 10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 30px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.05)', border: '1px solid rgba(219,238,254,0.5)' }}>
           <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
             <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: 'linear-gradient(135deg, #3a92f5, #1c5dd7)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Droplets style={{ width: '18px', height: '18px', color: 'white' }} />
@@ -112,47 +157,42 @@ export default function PublicSite() {
             </div>
           </a>
 
-          {/* Desktop links */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="hidden-mobile">
             {[['#services', 'Services'], ['#why', 'Why Us'], ['#contact', 'Contact']].map(([href, text]) => (
-              <a key={text} href={href} style={{ padding: '8px 16px', fontSize: '13px', fontWeight: 500, color: '#475569', textDecoration: 'none', borderRadius: '9999px', transition: 'background 0.2s, color 0.2s' }}
+              <a key={text} href={href} style={{ padding: '8px 16px', fontSize: '13px', fontWeight: 500, color: '#475569', textDecoration: 'none', borderRadius: '10px', transition: 'background 0.2s, color 0.2s' }}
                 onMouseEnter={e => { e.target.style.background = '#f1f5f9'; e.target.style.color = '#1c5dd7' }}
                 onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.color = '#475569' }}>
                 {text}
               </a>
             ))}
-            <Link to="/admin" style={{ padding: '8px 18px', fontSize: '13px', fontWeight: 600, color: 'white', textDecoration: 'none', borderRadius: '9999px', background: 'linear-gradient(135deg, #2474ea, #1c5dd7)', marginLeft: '4px' }}>
+            <Link to="/admin" style={{ padding: '8px 18px', fontSize: '13px', fontWeight: 600, color: 'white', textDecoration: 'none', borderRadius: '10px', background: 'linear-gradient(135deg, #2474ea, #1c5dd7)', marginLeft: '4px' }}>
               Admin
             </Link>
           </div>
 
-          {/* Mobile menu button */}
           <button onClick={() => setMobileMenu(!mobileMenu)} className="show-mobile" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px', color: '#475569', display: 'none' }}>
             {mobileMenu ? <X style={{ width: '22px', height: '22px' }} /> : <Menu style={{ width: '22px', height: '22px' }} />}
           </button>
         </div>
 
-        {/* Mobile dropdown */}
         {mobileMenu && (
-          <div style={{ marginTop: '8px', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(20px)', borderRadius: '20px', padding: '16px 20px', boxShadow: '0 4px 30px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div style={{ marginTop: '8px', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(20px)', borderRadius: '16px', padding: '16px 20px', boxShadow: '0 4px 30px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {[['#services', 'Services'], ['#why', 'Why Us'], ['#contact', 'Contact']].map(([href, text]) => (
-              <a key={text} href={href} onClick={() => setMobileMenu(false)} style={{ padding: '10px 16px', fontSize: '14px', fontWeight: 500, color: '#475569', textDecoration: 'none', borderRadius: '12px' }}>{text}</a>
+              <a key={text} href={href} onClick={() => setMobileMenu(false)} style={{ padding: '10px 16px', fontSize: '14px', fontWeight: 500, color: '#475569', textDecoration: 'none', borderRadius: '10px' }}>{text}</a>
             ))}
             <Link to="/admin" onClick={() => setMobileMenu(false)} style={{ padding: '10px 16px', fontSize: '14px', fontWeight: 600, color: '#2474ea', textDecoration: 'none' }}>Admin Portal</Link>
           </div>
         )}
       </nav>
 
-      {/* Hero with Video */}
+      {/* Hero with Image Slideshow */}
       <section style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
-        <video autoPlay muted loop playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}>
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(23,42,83,0.88) 0%, rgba(23,42,83,0.65) 40%, rgba(23,42,83,0.88) 100%)' }} />
+        <HeroSlideshow />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(23,42,83,0.82) 0%, rgba(23,42,83,0.6) 40%, rgba(23,42,83,0.88) 100%)' }} />
 
         <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '200px 48px 140px' }}>
           <div style={{ maxWidth: '680px' }}>
-            <div className="animate-fade-in-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '7px 18px', borderRadius: '9999px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: '#93cdfd', fontSize: '13px', fontWeight: 500, marginBottom: '28px', backdropFilter: 'blur(8px)' }}>
+            <div className="animate-fade-in-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '7px 18px', borderRadius: '10px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: '#93cdfd', fontSize: '13px', fontWeight: 500, marginBottom: '28px', backdropFilter: 'blur(8px)' }}>
               <Droplets style={{ width: '14px', height: '14px' }} />
               Trusted Water Solutions Since Day One
             </div>
@@ -173,7 +213,6 @@ export default function PublicSite() {
             </div>
           </div>
 
-          {/* Stats */}
           <div className="animate-fade-in-up" style={{ marginTop: '72px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '32px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '36px', animationDelay: '400ms' }}>
             {[['500+', 'Projects Completed'], ['15+', 'Years Experience'], ['98%', 'Client Satisfaction'], ['24/7', 'Emergency Service']].map(([num, label]) => (
               <div key={label}>
@@ -195,7 +234,7 @@ export default function PublicSite() {
       <section id="services" style={{ padding: '100px 48px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '9999px', background: '#eff8ff', color: '#2474ea', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>What We Do</span>
+            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '10px', background: '#eff8ff', color: '#2474ea', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>What We Do</span>
             <h2 className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: '#172a53', letterSpacing: '-0.02em' }}>Our Services</h2>
             <p style={{ marginTop: '12px', color: '#64748b', maxWidth: '480px', marginLeft: 'auto', marginRight: 'auto', fontSize: '15px', lineHeight: 1.6 }}>Complete water system solutions — from survey to installation and maintenance.</p>
           </div>
@@ -209,7 +248,7 @@ export default function PublicSite() {
       <section id="why" style={{ padding: '100px 48px', background: 'linear-gradient(180deg, #f8fbff 0%, white 100%)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '9999px', background: '#dbeefe', color: '#1c5dd7', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>Our Promise</span>
+            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '10px', background: '#dbeefe', color: '#1c5dd7', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>Our Promise</span>
             <h2 className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: '#172a53', letterSpacing: '-0.02em' }}>Why Choose WITS?</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
@@ -235,7 +274,7 @@ export default function PublicSite() {
       <section id="contact" style={{ padding: '100px 48px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
           <div>
-            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '9999px', background: '#eff8ff', color: '#2474ea', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>Get In Touch</span>
+            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '10px', background: '#eff8ff', color: '#2474ea', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>Get In Touch</span>
             <h2 className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: '#172a53', letterSpacing: '-0.02em', lineHeight: 1.15 }}>Let's Discuss Your<br />Water Needs</h2>
             <p style={{ marginTop: '20px', color: '#64748b', lineHeight: 1.7, maxWidth: '440px', fontSize: '15px' }}>
               Whether it's a new borehole, irrigation system, or water filtration — we're here to help. Reach out and we'll get back to you within 24 hours.
@@ -321,7 +360,6 @@ export default function PublicSite() {
         </div>
       </footer>
 
-      {/* Responsive overrides */}
       <style>{`
         @media (max-width: 768px) {
           .hidden-mobile { display: none !important; }

@@ -131,20 +131,20 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-slate-50/80">
       {/* Top bar */}
       <header className="bg-white border-b border-slate-200/80 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-2 text-slate-400 hover:text-ocean-600 transition text-sm font-medium">
-              <ArrowLeft className="w-4 h-4" /> Back to Site
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+            <Link to="/" className="flex items-center gap-1.5 sm:gap-2 text-slate-400 hover:text-ocean-600 transition text-sm font-medium shrink-0">
+              <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back to Site</span><span className="sm:hidden">Back</span>
             </Link>
-            <div className="w-px h-6 bg-slate-200" />
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-ocean-500 to-ocean-700 flex items-center justify-center">
+            <div className="w-px h-6 bg-slate-200 shrink-0" />
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-ocean-500 to-ocean-700 flex items-center justify-center shrink-0">
                 <Droplets className="w-4 h-4 text-white" />
               </div>
-              <span className="font-display font-bold text-slate-900 text-sm">Lead Manager</span>
+              <span className="font-display font-bold text-slate-900 text-sm truncate">Lead Manager</span>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             <div className="w-8 h-8 rounded-full bg-ocean-100 flex items-center justify-center">
               <span className="text-xs font-bold text-ocean-700">WE</span>
             </div>
@@ -152,9 +152,9 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
           <StatCard icon={Users} label="Total Leads" value={stats.total} accent="bg-ocean-100 text-ocean-600" />
           <StatCard icon={UserPlus} label="New Today" value={stats.newToday} accent="bg-blue-100 text-blue-600" />
           <StatCard icon={TrendingUp} label="Converted" value={stats.converted} accent="bg-emerald-100 text-emerald-600" />
@@ -194,12 +194,12 @@ export default function AdminDashboard() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-slate-100 bg-slate-50/50">
-                  <th className="text-left px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Name</th>
-                  <th className="text-left px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden md:table-cell">Service</th>
-                  <th className="text-left px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden lg:table-cell">Email</th>
-                  <th className="text-left px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Status</th>
-                  <th className="text-left px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden sm:table-cell">Date</th>
-                  <th className="px-5 py-3 w-10"></th>
+                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Name</th>
+                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden md:table-cell">Service</th>
+                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden lg:table-cell">Email</th>
+                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Status</th>
+                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden sm:table-cell">Date</th>
+                  <th className="px-3 sm:px-5 py-3 w-10"></th>
                 </tr>
               </thead>
               <tbody>
@@ -219,21 +219,21 @@ export default function AdminDashboard() {
                       onClick={() => setSelectedLead(lead)}
                       className="border-b border-slate-50 hover:bg-ocean-50/30 cursor-pointer transition-colors"
                     >
-                      <td className="px-5 py-3.5">
+                      <td className="px-3 sm:px-5 py-3.5">
                         <div className="font-semibold text-slate-900">{lead.name}</div>
                         <div className="text-xs text-slate-400 md:hidden mt-0.5">{lead.service}</div>
                       </td>
-                      <td className="px-5 py-3.5 text-slate-600 hidden md:table-cell">{lead.service}</td>
-                      <td className="px-5 py-3.5 text-slate-500 hidden lg:table-cell">{lead.email}</td>
-                      <td className="px-5 py-3.5">
+                      <td className="px-3 sm:px-5 py-3.5 text-slate-600 hidden md:table-cell">{lead.service}</td>
+                      <td className="px-3 sm:px-5 py-3.5 text-slate-500 hidden lg:table-cell">{lead.email}</td>
+                      <td className="px-3 sm:px-5 py-3.5">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ring-1 ring-inset ${status.color}`}>
                           {status.label}
                         </span>
                       </td>
-                      <td className="px-5 py-3.5 text-slate-400 text-xs hidden sm:table-cell">
+                      <td className="px-3 sm:px-5 py-3.5 text-slate-400 text-xs hidden sm:table-cell">
                         {new Date(lead.date).toLocaleDateString()}
                       </td>
-                      <td className="px-5 py-3.5">
+                      <td className="px-3 sm:px-5 py-3.5">
                         <button
                           onClick={e => { e.stopPropagation(); handleDelete(lead.id) }}
                           className="p-1.5 rounded-lg text-slate-300 hover:text-red-500 hover:bg-red-50 transition cursor-pointer"
@@ -247,7 +247,7 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
-          <div className="px-5 py-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between">
+          <div className="px-3 sm:px-5 py-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between flex-wrap gap-1">
             <span>Showing {filtered.length} of {leads.length} leads</span>
             <span className="text-ocean-500 font-medium">WITS Enterprise Admin</span>
           </div>

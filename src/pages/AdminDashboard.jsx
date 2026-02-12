@@ -12,7 +12,7 @@ const statusConfig = {
 
 function StatCard({ icon: Icon, label, value, accent }) {
   return (
-    <div className="bg-white rounded-xl p-4 sm:p-5 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+    <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
       <div className="flex items-center justify-between mb-3">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${accent}`}>
           <Icon className="w-5 h-5" />
@@ -131,7 +131,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-slate-50/80 overflow-x-hidden">
       {/* Top bar */}
       <header className="bg-white border-b border-slate-200/80 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link to="/" className="flex items-center gap-1.5 sm:gap-2 text-slate-400 hover:text-ocean-600 transition text-sm font-medium shrink-0">
               <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back to Site</span><span className="sm:hidden">Back</span>
@@ -152,9 +152,9 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="max-w-7xl mx-auto px-5 sm:px-8 py-6 sm:py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-6 sm:mb-8">
           <StatCard icon={Users} label="Total Leads" value={stats.total} accent="bg-ocean-100 text-ocean-600" />
           <StatCard icon={UserPlus} label="New Today" value={stats.newToday} accent="bg-blue-100 text-blue-600" />
           <StatCard icon={TrendingUp} label="Converted" value={stats.converted} accent="bg-emerald-100 text-emerald-600" />
@@ -162,7 +162,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Toolbar */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
@@ -189,17 +189,17 @@ export default function AdminDashboard() {
         </div>
 
         {/* Leads table */}
-        <div className="bg-white rounded-xl border border-slate-200/80 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-slate-100 bg-slate-50/50">
-                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Name</th>
-                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden md:table-cell">Service</th>
-                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden lg:table-cell">Email</th>
-                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Status</th>
-                  <th className="text-left px-3 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden sm:table-cell">Date</th>
-                  <th className="px-3 sm:px-5 py-3 w-10"></th>
+                  <th className="text-left px-4 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Name</th>
+                  <th className="text-left px-4 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden md:table-cell">Service</th>
+                  <th className="text-left px-4 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden lg:table-cell">Email</th>
+                  <th className="text-left px-4 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Status</th>
+                  <th className="text-left px-4 sm:px-5 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide hidden sm:table-cell">Date</th>
+                  <th className="px-4 sm:px-5 py-3 w-10"></th>
                 </tr>
               </thead>
               <tbody>
@@ -219,21 +219,21 @@ export default function AdminDashboard() {
                       onClick={() => setSelectedLead(lead)}
                       className="border-b border-slate-50 hover:bg-ocean-50/30 cursor-pointer transition-colors"
                     >
-                      <td className="px-3 sm:px-5 py-3.5">
+                      <td className="px-4 sm:px-5 py-3.5">
                         <div className="font-semibold text-slate-900">{lead.name}</div>
                         <div className="text-xs text-slate-400 md:hidden mt-0.5">{lead.service}</div>
                       </td>
-                      <td className="px-3 sm:px-5 py-3.5 text-slate-600 hidden md:table-cell">{lead.service}</td>
-                      <td className="px-3 sm:px-5 py-3.5 text-slate-500 hidden lg:table-cell">{lead.email}</td>
-                      <td className="px-3 sm:px-5 py-3.5">
+                      <td className="px-4 sm:px-5 py-3.5 text-slate-600 hidden md:table-cell">{lead.service}</td>
+                      <td className="px-4 sm:px-5 py-3.5 text-slate-500 hidden lg:table-cell">{lead.email}</td>
+                      <td className="px-4 sm:px-5 py-3.5">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ring-1 ring-inset ${status.color}`}>
                           {status.label}
                         </span>
                       </td>
-                      <td className="px-3 sm:px-5 py-3.5 text-slate-400 text-xs hidden sm:table-cell">
+                      <td className="px-4 sm:px-5 py-3.5 text-slate-400 text-xs hidden sm:table-cell">
                         {new Date(lead.date).toLocaleDateString()}
                       </td>
-                      <td className="px-3 sm:px-5 py-3.5">
+                      <td className="px-4 sm:px-5 py-3.5">
                         <button
                           onClick={e => { e.stopPropagation(); handleDelete(lead.id) }}
                           className="p-1.5 rounded-lg text-slate-300 hover:text-red-500 hover:bg-red-50 transition cursor-pointer"
@@ -247,7 +247,7 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
-          <div className="px-3 sm:px-5 py-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between flex-wrap gap-1">
+          <div className="px-4 sm:px-5 py-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between flex-wrap gap-1">
             <span>Showing {filtered.length} of {leads.length} leads</span>
             <span className="text-ocean-500 font-medium hidden sm:inline">WITS Enterprise Admin</span>
           </div>

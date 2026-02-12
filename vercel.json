@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/((?!assets|hero-video|vite).*)", "destination": "/index.html" }
+  ]
+}

@@ -12,7 +12,7 @@ const statusConfig = {
 
 function StatCard({ icon: Icon, label, value, accent }) {
   return (
-    <div className="bg-white rounded-xl p-5 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl p-4 sm:p-5 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
       <div className="flex items-center justify-between mb-3">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${accent}`}>
           <Icon className="w-5 h-5" />
@@ -128,7 +128,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50/80">
+    <div className="min-h-screen bg-slate-50/80 overflow-x-hidden">
       {/* Top bar */}
       <header className="bg-white border-b border-slate-200/80 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
@@ -177,7 +177,7 @@ export default function AdminDashboard() {
             <select
               value={statusFilter}
               onChange={e => setStatusFilter(e.target.value)}
-              className="pl-10 pr-8 py-2.5 rounded-xl border border-slate-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-400/40 bg-white appearance-none cursor-pointer"
+              className="w-full pl-10 pr-8 py-2.5 rounded-xl border border-slate-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-400/40 bg-white appearance-none cursor-pointer"
             >
               <option value="all">All Status</option>
               {Object.entries(statusConfig).map(([k, v]) => (
@@ -249,7 +249,7 @@ export default function AdminDashboard() {
           </div>
           <div className="px-3 sm:px-5 py-3 border-t border-slate-100 text-xs text-slate-400 flex items-center justify-between flex-wrap gap-1">
             <span>Showing {filtered.length} of {leads.length} leads</span>
-            <span className="text-ocean-500 font-medium">WITS Enterprise Admin</span>
+            <span className="text-ocean-500 font-medium hidden sm:inline">WITS Enterprise Admin</span>
           </div>
         </div>
       </main>

@@ -13,13 +13,6 @@ const services = [
   { title: 'Borehole Survey & Drilling', icon: Search, img: '/images/drilling.jpg', desc: 'Geophysical surveys to locate optimal drilling points, followed by professional drilling services. Full permits and compliance handled.' },
 ]
 
-const heroSlides = [
-  { img: '/images/hero-1.jpg', alt: 'Water systems' },
-  { img: '/images/hero-2.jpg', alt: 'Agricultural irrigation' },
-  { img: '/images/hero-3.jpg', alt: 'Clean water' },
-  { img: '/images/hero-4.jpg', alt: 'Water infrastructure' },
-]
-
 const reasons = [
   { title: 'Reliable Water Supply', desc: 'Ensure water availability even during shortages and load shedding.', icon: Shield },
   { title: 'Health & Safety', desc: 'Access to clean, safe drinking water for your family and community.', icon: CheckCircle2 },
@@ -92,40 +85,30 @@ function ServiceCard({ service }) {
   )
 }
 
-function HeroSlideshow() {
-  const [current, setCurrent] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => setCurrent(c => (c + 1) % heroSlides.length), 5000)
-    return () => clearInterval(timer)
-  }, [])
-
+function FloatingOrbs() {
   return (
-    <>
-      {heroSlides.map((slide, i) => (
-        <img
-          key={i}
-          src={slide.img}
-          alt={slide.alt}
-          style={{
-            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
-            opacity: current === i ? 1 : 0,
-            transition: 'opacity 1.2s ease-in-out',
-            transform: current === i ? 'scale(1.05)' : 'scale(1)',
-          }}
-        />
+    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+      <style>{`
+        @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(60px,-80px) scale(1.1); } }
+        @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,60px) scale(0.9); } }
+        @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px,40px) scale(1.15); } }
+        @keyframes float4 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-60px,-50px) scale(1.05); } }
+        @keyframes float5 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,70px) scale(0.95); } }
+      `}</style>
+      {[
+        { size: 320, top: '-5%', left: '60%', bg: 'radial-gradient(circle, rgba(58,146,245,0.35) 0%, transparent 70%)', anim: 'float1 12s ease-in-out infinite' },
+        { size: 250, top: '40%', left: '-5%', bg: 'radial-gradient(circle, rgba(36,116,234,0.3) 0%, transparent 70%)', anim: 'float2 15s ease-in-out infinite' },
+        { size: 180, top: '20%', left: '75%', bg: 'radial-gradient(circle, rgba(124,217,174,0.25) 0%, transparent 70%)', anim: 'float3 10s ease-in-out infinite' },
+        { size: 400, top: '50%', left: '40%', bg: 'radial-gradient(circle, rgba(93,179,255,0.2) 0%, transparent 70%)', anim: 'float4 18s ease-in-out infinite' },
+        { size: 150, top: '70%', left: '15%', bg: 'radial-gradient(circle, rgba(147,205,253,0.3) 0%, transparent 70%)', anim: 'float5 13s ease-in-out infinite' },
+        { size: 200, top: '10%', left: '20%', bg: 'radial-gradient(circle, rgba(58,146,245,0.2) 0%, transparent 70%)', anim: 'float2 16s ease-in-out infinite' },
+      ].map((orb, i) => (
+        <div key={i} style={{
+          position: 'absolute', width: orb.size, height: orb.size, borderRadius: '50%',
+          top: orb.top, left: orb.left, background: orb.bg, animation: orb.anim, filter: 'blur(40px)',
+        }} />
       ))}
-      {/* Slide indicators */}
-      <div className="hero-indicators" style={{ position: 'absolute', bottom: '100px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10 }}>
-        {heroSlides.map((_, i) => (
-          <button key={i} onClick={() => setCurrent(i)} style={{
-            width: current === i ? '32px' : '8px', height: '8px', borderRadius: '4px',
-            background: current === i ? 'white' : 'rgba(255,255,255,0.4)',
-            border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0,
-          }} />
-        ))}
-      </div>
-    </>
+    </div>
   )
 }
 
@@ -185,10 +168,9 @@ export default function PublicSite() {
         )}
       </nav>
 
-      {/* Hero with Image Slideshow */}
-      <section style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
-        <HeroSlideshow />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(23,42,83,0.82) 0%, rgba(23,42,83,0.6) 40%, rgba(23,42,83,0.88) 100%)' }} />
+      {/* Hero */}
+      <section style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden', background: 'linear-gradient(135deg, #0f1f42 0%, #172a53 30%, #1c3a6e 60%, #162d55 100%)' }}>
+        <FloatingOrbs />
 
         <div className="hero-content" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '200px 48px 140px' }}>
           <div style={{ maxWidth: '680px' }}>
@@ -372,7 +354,6 @@ export default function PublicSite() {
           .hero-content { padding: 140px 20px 80px !important; }
           .hero-heading { font-size: 2.2rem !important; }
           .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; margin-top: 40px !important; }
-          .hero-indicators { bottom: 60px !important; }
           .section-padding { padding: 60px 20px !important; }
           .services-grid { grid-template-columns: 1fr !important; }
           .reasons-grid { grid-template-columns: 1fr 1fr !important; }

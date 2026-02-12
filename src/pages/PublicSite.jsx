@@ -116,7 +116,7 @@ function HeroSlideshow() {
         />
       ))}
       {/* Slide indicators */}
-      <div style={{ position: 'absolute', bottom: '100px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10 }}>
+      <div className="hero-indicators" style={{ position: 'absolute', bottom: '100px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10 }}>
         {heroSlides.map((_, i) => (
           <button key={i} onClick={() => setCurrent(i)} style={{
             width: current === i ? '32px' : '8px', height: '8px', borderRadius: '4px',
@@ -190,20 +190,20 @@ export default function PublicSite() {
         <HeroSlideshow />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(23,42,83,0.82) 0%, rgba(23,42,83,0.6) 40%, rgba(23,42,83,0.88) 100%)' }} />
 
-        <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '200px 48px 140px' }}>
+        <div className="hero-content" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '200px 48px 140px' }}>
           <div style={{ maxWidth: '680px' }}>
             <div className="animate-fade-in-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '7px 18px', borderRadius: '10px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: '#93cdfd', fontSize: '13px', fontWeight: 500, marginBottom: '28px', backdropFilter: 'blur(8px)' }}>
               <Droplets style={{ width: '14px', height: '14px' }} />
               Trusted Water Solutions Since Day One
             </div>
-            <h1 className="font-display animate-fade-in-up" style={{ fontWeight: 800, fontSize: 'clamp(2.8rem, 5vw, 4.2rem)', color: 'white', lineHeight: 1.08, letterSpacing: '-0.025em', animationDelay: '100ms' }}>
+            <h1 className="font-display animate-fade-in-up hero-heading" style={{ fontWeight: 800, fontSize: 'clamp(2.8rem, 5vw, 4.2rem)', color: 'white', lineHeight: 1.08, letterSpacing: '-0.025em', animationDelay: '100ms' }}>
               Water Systems<br />
               <span style={{ background: 'linear-gradient(90deg, #93cdfd, #7cd9ae)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>You Can Rely On</span>
             </h1>
             <p className="font-body animate-fade-in-up" style={{ marginTop: '28px', fontSize: '17px', color: 'rgba(191,224,254,0.85)', maxWidth: '520px', lineHeight: 1.75, animationDelay: '200ms' }}>
               From borehole drilling to rainwater harvesting, WITS Enterprise delivers complete water solutions for homes, farms, and businesses across South Africa.
             </p>
-            <div className="animate-fade-in-up" style={{ marginTop: '36px', display: 'flex', flexWrap: 'wrap', gap: '14px', animationDelay: '300ms' }}>
+            <div className="animate-fade-in-up hero-buttons" style={{ marginTop: '36px', display: 'flex', flexWrap: 'wrap', gap: '14px', animationDelay: '300ms' }}>
               <a href="#contact" className="font-display" style={{ padding: '15px 30px', background: 'white', color: '#1c5dd7', borderRadius: '14px', fontWeight: 700, fontSize: '14px', display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
                 Get Free Quote <ArrowRight style={{ width: '16px', height: '16px' }} />
               </a>
@@ -213,10 +213,10 @@ export default function PublicSite() {
             </div>
           </div>
 
-          <div className="animate-fade-in-up" style={{ marginTop: '72px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '32px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '36px', animationDelay: '400ms' }}>
+          <div className="animate-fade-in-up hero-stats" style={{ marginTop: '72px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '32px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '36px', animationDelay: '400ms' }}>
             {[['500+', 'Projects Completed'], ['15+', 'Years Experience'], ['98%', 'Client Satisfaction'], ['24/7', 'Emergency Service']].map(([num, label]) => (
               <div key={label}>
-                <div className="font-display" style={{ fontWeight: 800, fontSize: '2rem', color: 'white' }}>{num}</div>
+                <div className="font-display hero-stats-num" style={{ fontWeight: 800, fontSize: '2rem', color: 'white' }}>{num}</div>
                 <div style={{ color: 'rgba(147,205,253,0.55)', fontSize: '13px', marginTop: '4px' }}>{label}</div>
               </div>
             ))}
@@ -231,27 +231,27 @@ export default function PublicSite() {
       </section>
 
       {/* Services */}
-      <section id="services" style={{ padding: '100px 48px' }}>
+      <section id="services" className="section-padding" style={{ padding: '100px 48px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '10px', background: '#eff8ff', color: '#2474ea', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>What We Do</span>
             <h2 className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: '#172a53', letterSpacing: '-0.02em' }}>Our Services</h2>
             <p style={{ marginTop: '12px', color: '#64748b', maxWidth: '480px', marginLeft: 'auto', marginRight: 'auto', fontSize: '15px', lineHeight: 1.6 }}>Complete water system solutions — from survey to installation and maintenance.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '20px' }}>
+          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '20px' }}>
             {services.map((s, i) => <ServiceCard key={s.title} service={s} index={i} />)}
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section id="why" style={{ padding: '100px 48px', background: 'linear-gradient(180deg, #f8fbff 0%, white 100%)' }}>
+      <section id="why" className="section-padding" style={{ padding: '100px 48px', background: 'linear-gradient(180deg, #f8fbff 0%, white 100%)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '10px', background: '#dbeefe', color: '#1c5dd7', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>Our Promise</span>
             <h2 className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: '#172a53', letterSpacing: '-0.02em' }}>Why Choose WITS?</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+          <div className="reasons-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
             {reasons.map((r) => {
               const Icon = r.icon
               return (
@@ -271,8 +271,8 @@ export default function PublicSite() {
       </section>
 
       {/* Contact */}
-      <section id="contact" style={{ padding: '100px 48px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
+      <section id="contact" className="section-padding" style={{ padding: '100px 48px' }}>
+        <div className="contact-grid" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'start' }}>
           <div>
             <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: '10px', background: '#eff8ff', color: '#2474ea', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '12px' }}>Get In Touch</span>
             <h2 className="font-display" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: '#172a53', letterSpacing: '-0.02em', lineHeight: 1.15 }}>Let's Discuss Your<br />Water Needs</h2>
@@ -306,7 +306,7 @@ export default function PublicSite() {
               </div>
             ) : (
               <form onSubmit={handleContact} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="form-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>Full Name</label>
                     <input required value={contactForm.name} onChange={e => setContactForm({ ...contactForm, name: e.target.value })} style={inputStyle} />
@@ -316,7 +316,7 @@ export default function PublicSite() {
                     <input required type="email" value={contactForm.email} onChange={e => setContactForm({ ...contactForm, email: e.target.value })} style={inputStyle} />
                   </div>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="form-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>Phone</label>
                     <input value={contactForm.phone} onChange={e => setContactForm({ ...contactForm, phone: e.target.value })} style={inputStyle} />
@@ -344,7 +344,7 @@ export default function PublicSite() {
 
       {/* Footer */}
       <footer style={{ background: '#172a53', padding: '48px', color: 'rgba(147,205,253,0.55)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
+        <div className="footer-inner" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#1e4289', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Droplets style={{ width: '16px', height: '16px', color: '#5fb1fa' }} />
@@ -367,6 +367,28 @@ export default function PublicSite() {
         }
         @media (min-width: 769px) {
           .show-mobile { display: none !important; }
+        }
+        @media (max-width: 768px) {
+          .hero-content { padding: 140px 20px 80px !important; }
+          .hero-heading { font-size: 2.2rem !important; }
+          .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; margin-top: 40px !important; }
+          .hero-indicators { bottom: 60px !important; }
+          .section-padding { padding: 60px 20px !important; }
+          .services-grid { grid-template-columns: 1fr !important; }
+          .reasons-grid { grid-template-columns: 1fr 1fr !important; }
+          .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .form-grid-2 { grid-template-columns: 1fr !important; }
+          .footer-inner { flex-direction: column !important; text-align: center !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-content { padding: 130px 16px 60px !important; }
+          .hero-heading { font-size: 1.8rem !important; }
+          .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+          .hero-stats-num { font-size: 1.5rem !important; }
+          .section-padding { padding: 48px 16px !important; }
+          .reasons-grid { grid-template-columns: 1fr !important; }
+          .hero-buttons { flex-direction: column !important; }
+          .hero-buttons a { text-align: center; justify-content: center; }
         }
       `}</style>
     </div>
